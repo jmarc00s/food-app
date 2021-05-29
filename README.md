@@ -1,4 +1,4 @@
-# thaifood-app
+# Food-app
 
 ## Project setup
 ```
