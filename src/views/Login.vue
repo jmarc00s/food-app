@@ -1,9 +1,9 @@
 <template>
   <div class="login">
     <p> Realize o login na aplicação</p>
-    <div class="formulario-login">
-      <j-input v-model="form.login" type="text" label="Usuário"  />
-      <j-input v-model="form.password" type="password" label="Senha"/>
+    <div class="form" >
+      <j-input id="form-login" v-model="form.login" type="text" label="Usuário"  />
+      <j-input id="form-password" v-model="form.password" type="password" label="Senha"/>
       <j-button title="Entrar" v-on:onClick="logIn(form)"/>
     </div>
   </div>  
@@ -26,7 +26,7 @@ export default {
     }
   },
   methods: {
-    logIn: function(form){      
+    logIn(form){      
       if(!this._checkFormData(form)) return;
 
       const pLogin = http.get(`users?login=${form.login}&password=${md5(form.password)}`);
@@ -61,12 +61,12 @@ export default {
 </script>
 
 <style>
-.formulario-login {
-  @apply flex flex-col gap-2 
+.form {
+  @apply grid grid-cols-1 gap-4
 }
 
 .login {  
-  @apply h-96 bg-white flex flex-col container justify-center items-center mx-auto w-full rounded self-center gap-5
+  @apply h-full bg-white flex flex-col container justify-center items-center mx-auto w-full rounded self-center gap-5
 }
 
 </style>

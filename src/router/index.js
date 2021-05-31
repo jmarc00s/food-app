@@ -16,8 +16,7 @@ const routes = [
         next();
         return;
       }
-      next('');
-      window.alert('Para Acessar essa rotina, é necessário realizar o login.');
+      next('');      
     }
   }
 ]

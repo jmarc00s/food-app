@@ -17,7 +17,7 @@ export default createStore({
   },
   actions: {
     logIn: ({commit}, payload) => commit('setUser', payload),
-    logOff: ({commit}) => commit('removeUser')
+    logOut: ({commit}) => commit('removeUser')
   },
   getters: {
     user: state => state.loggedUser,

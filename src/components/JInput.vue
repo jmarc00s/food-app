@@ -1,7 +1,8 @@
 <template>
   <div class="grid gap-3">
-    <label for="">{{label}}</label>
+    <label :for="id">{{label}}</label>
     <input 
+      :id="id"
       class="input" 
       :value="modelValue" 
       :type="type" 
@@ -22,6 +23,10 @@ export default {
       type: String,
       required: true
     },
+    id: {
+      type: String, 
+      required: true,
+    },
     placeholder: [String],
     modelValue: [String]
   },
@@ -37,6 +42,7 @@ export default {
     _validateProps() {
       if(!this.type) console.error('É necessário informar um tipo para o input.');
       if(!this.label) console.error('É necessário informar um label para o input.');
+      if(!this.id) console.error('É necessário informar um id para o input.');
     },
     updateValue(value) {
       this.$emit('update:modelValue', value);
@@ -47,6 +53,9 @@ export default {
 
 <style>
 .input{
-  @apply mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md
+  @apply mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-11 bg-gray-100 p-4
+}
+.input:focus{
+  @apply border-purple-400
 }
 </style>
