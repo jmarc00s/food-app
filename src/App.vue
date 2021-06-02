@@ -18,6 +18,6 @@ export default {
 <style scoped>
 #main {      
   height: 100vh;
-  @apply flex flex-col bg-gray-50 p-0 m-0
+  @apply flex flex-col bg-gray-200 p-0 m-0
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex justify-center">
       <input 
         class="input" 
         :value="modelValue" 
@@ -35,10 +35,10 @@ export default {
 <style scoped>
 
 .input{
-    @apply text-lg w-4 h-4
+    @apply text-lg w-4 h-4 text-indigo-500
 }
 .label {
-    @apply text-sm pl-1
+    @apply text-sm pl-2
 }
 
 </style>

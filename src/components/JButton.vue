@@ -20,7 +20,7 @@ export default {
 
 <style scoped>
 .btn {
-    @apply p-2 bg-indigo-500 text-white text-sm rounded shadow-sm cursor-pointer w-full outline-none
+    @apply p-2 bg-indigo-500 text-white text-sm rounded-xl shadow-sm cursor-pointer w-full outline-none
 }
 .btn:hover {
     @apply bg-indigo-600

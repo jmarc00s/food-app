@@ -2,6 +2,7 @@
   <div class="grid">
     <label class="label" :for="id">{{label}}</label>
     <input 
+      autocomplete="off"
       :id="id"
       class="input" 
       :value="modelValue" 
@@ -28,7 +29,11 @@ export default {
       required: true,
     },
     placeholder: [String],
-    modelValue: [String]
+    modelValue: [String],
+    required: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -53,12 +58,12 @@ export default {
 
 <style scoped>
 .label {
-  @apply text-sm p-0
+  @apply text-sm p-0 pb-1
 }
 .input{
   @apply block w-full shadow-sm sm:text-sm rounded h-11 p-4 outline-none border-solid border border-gray-400 
 }
 .input:focus{
-  @apply border-purple-400
+  @apply border-indigo-500
 }
 </style>
