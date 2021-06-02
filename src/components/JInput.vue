@@ -1,6 +1,6 @@
 <template>
-  <div class="grid gap-3">
-    <label :for="id">{{label}}</label>
+  <div class="grid">
+    <label class="label" :for="id">{{label}}</label>
     <input 
       :id="id"
       class="input" 
@@ -51,9 +51,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.label {
+  @apply text-sm p-0
+}
 .input{
-  @apply mt-1 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-11 bg-gray-100 p-4
+  @apply block w-full shadow-sm sm:text-sm rounded h-11 p-4 outline-none border-solid border border-gray-400 
 }
 .input:focus{
   @apply border-purple-400
