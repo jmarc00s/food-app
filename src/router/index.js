@@ -11,15 +11,22 @@ const routes = [
   {
     path: '/home',
     component: () => import('../views/Home.vue'),
-    beforeEnter: (to, from, next) => {
-      if(store.getters.loggedIn){
-        next();
-        return;
-      }
-      next('');      
-    }
+    beforeEnter: (to, from, next) => loginGuard(to, from, next)
+  },
+  {
+    path: '/sign-up',
+    component: () => import('../views/Signup.vue')
   }
 ]
+
+
+const loginGuard = function(to, from, next) {
+  if(store.getters.loggedIn){
+    next();
+    return;
+  }
+  next(''); 
+}
 
 const router = createRouter({
   history: createWebHistory(),

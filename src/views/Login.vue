@@ -86,6 +86,7 @@ export default {
 .form {
   @apply flex flex-col bg-white pt-8 px-10 rounded-lg w-full md:h-2/3 sm:h-full shadow
 }
+
 .form__icon {
   @apply w-16 pb-5 
 }
