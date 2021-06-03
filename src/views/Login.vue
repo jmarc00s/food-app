@@ -1,14 +1,14 @@
 <template>
   <div class="login">        
-    <div class="form">
+    <div @keypress.enter="logIn(form)" class="form">
       <div class="form__header">
         <img class="form__icon" src="../assets/dish.svg" alt="dish">
         <h2 class="brand">ThaiApp</h2>
         <h4 class="text-sm">Faça o login para acessar a aplicação.</h4>
       </div>
       <div class="form__body">
-        <j-input class="form__user" id="form-user" v-model="form.user" type="text" label="Usuário"  />
-        <j-input class="form__password" id="form-password" v-model="form.password" type="password" label="Senha"/>
+        <j-input :required="true" class="form__user" id="form-user" v-model="form.user" type="text" label="Usuário"  />
+        <j-input :required="true" class="form__password" id="form-password" v-model="form.password" type="password" label="Senha"/>
         <div class="form__options">       
           <j-checkbox label="Manter conectado" id="manter-conectado" v-model="form.keepLoggedIn" />  
           <router-link to="/" class="form__link">Esqueceu a senha ?</router-link>     
@@ -16,7 +16,7 @@
         <j-button class="form__button" title="Entrar" v-on:onClick="logIn(form)"/>
         <div class="form__signUp">    
           <p>Ainda não tem uma conta?</p>
-          <router-link to="/sign-up" href="#" class="form__link">Cadastre-se</router-link>
+          <router-link to="/sign-up"  class="form__link">Cadastre-se</router-link>
         </div>
       </div>            
     </div>
