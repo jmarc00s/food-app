@@ -36,10 +36,14 @@ export default {
     required: {
       type: Boolean,
       default: false
+    },
+    validatePassword: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
-    return {      
+    return {
       inputWithError: false,
       errorMessage: ''
     }
@@ -52,21 +56,37 @@ export default {
       this.$emit('update:modelValue', value);
     },
     afterBlur(){
-      this._validateRequired(this.modelValue);
+      this._validateModelValue(this.modelValue);
     },
     _validateProps() {
       if(!this.type) console.error('É necessário informar um tipo para o input.');
       if(!this.label) console.error('É necessário informar um label para o input.');
       if(!this.id) console.error('É necessário informar um id para o input.');
     },
+    _validateModelValue(value) {
+      if(this.type === 'password' && this.validatePassword && !this._validatePassword(value)) {
+        this._setInputWithError('Senha deve conter ao menos uma letra maiúscula e um número.');
+        return;
+      }
+      if(this._validateRequired(value)) {
+        this._setInputWithError('Campo obrigatório');
+        return;
+      }
+    },
     _validateRequired(value) {
-      this.inputWithError = this.required && !value.length;
-      this.errorMessage = 'Campo obrigatório';
+      return this.required && !value.length;
+    },
+    _validatePassword(value) {      
+      return !(value.length) || (/[A-Z]/.test(value) && /[0-9]/.test(value));      
+    },
+    _setInputWithError(message) {
+      this.inputWithError = true;
+      this.errorMessage = message;
     }
   },
   watch: {
     modelValue: function(val) {
-      this._validateRequired(val);
+      this._validateModelValue(val);
     },
     inputWithError: function(val) {
       if(!val) 

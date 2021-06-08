@@ -1,6 +1,4 @@
 {
-    "users": [
-        {"id": 1, "name": "João", "login": "jmarc00s", "password": "e10adc3949ba59abbe56e057f20f883e", "email": "jm@gmail.com"},
-        {"id": 2, "name": "Jéssica", "login": "jess00", "password": "e10adc3949ba59abbe56e057f20f883e", "email": "jess@gmail.com"}
-    ]
+  "users": [
+  ]
 }

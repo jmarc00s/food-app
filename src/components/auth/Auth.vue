@@ -25,7 +25,7 @@ export default {
   @apply text-3xl font-extrabold tracking-wide
 }
 .form {
-  @apply flex flex-col bg-white pt-8 px-10 rounded-lg w-full md:h-2/3 sm:h-full shadow
+  @apply flex flex-col bg-white pt-8 px-10 rounded-lg w-full md:h-4/5 sm:h-full shadow
 }
 
 .form__icon {
@@ -37,6 +37,6 @@ export default {
 }
 
 .container {
-    @apply flex flex-col justify-center items-center mx-auto rounded-lg self-center gap-5 h-full sm:w-full md:w-1/5
+    @apply flex flex-col justify-center items-center mx-auto rounded-lg self-center gap-5 h-full sm:w-full lg:w-2/5 xl:w-2/6
 }
 </style>

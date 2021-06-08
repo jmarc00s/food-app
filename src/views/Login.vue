@@ -7,8 +7,8 @@
         <h4 class="text-sm">Faça o login para acessar a aplicação.</h4>
       </div>
       <div class="form__body">
-        <j-input :required="true" class="form__user" id="form-user" v-model="form.user" type="text" label="Usuário"  />
-        <j-input :required="true" class="form__password" id="form-password" v-model="form.password" type="password" label="Senha"/>
+        <j-input required class="form__email" id="form-email" v-model="form.email" type="text" label="E-mail"  />
+        <j-input required class="form__password" id="form-password" v-model="form.password" type="password" label="Senha"/>
         <div class="form__options">       
           <j-checkbox label="Manter conectado" id="manter-conectado" v-model="form.keepLoggedIn" />  
           <router-link to="/" class="form__link">Esqueceu a senha ?</router-link>     
@@ -36,7 +36,7 @@ export default {
   data() {
     return {
       form: {
-        user: '',
+        email: '',
         password: '',
         keepLoggedIn: false
       }
@@ -46,7 +46,7 @@ export default {
     logIn(form){      
       if(!this._validateLoginForm(form)) return;
 
-      const pLogin = http.get(`users?login=${form.user}&password=${md5(form.password)}`);
+      const pLogin = http.get(`users?email=${form.email}&password=${md5(form.password)}`);
       pLogin.then(res => {
         if(res.data.length) {
           this.$store.dispatch('logIn', res.data[0]);
@@ -62,8 +62,8 @@ export default {
         window.alert("É necessário informar dados para login.");
         return false;
       }
-      if(!form.user){
-        window.alert("Login não informado.");
+      if(!form.email){
+        window.alert("Email não informado.");
         return false;
       }
       if(!form.password){
@@ -84,7 +84,7 @@ export default {
 }
  
 .form {
-  @apply flex flex-col bg-white pt-8 px-10 rounded-lg w-full md:h-2/3 sm:h-full shadow
+  @apply flex flex-col bg-white pt-8 px-10 rounded-lg w-full lg:h-2/3 sm:h-full shadow
 }
 
 .form__icon {
@@ -124,7 +124,7 @@ export default {
 }
 
 .login {   
-  @apply flex flex-col justify-center items-center mx-auto rounded-lg self-center gap-5 h-full sm:w-full md:w-1/5
+  @apply flex flex-col justify-center items-center mx-auto rounded-lg self-center gap-5 h-full sm:w-full lg:w-2/5 xl:w-2/6
 }
 
 </style>
