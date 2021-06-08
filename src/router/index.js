@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Login from '../views/Login.vue';
-import store from '../store/index'
-
+import { authGuard } from "./guards/auth-guard.js";
+import { dishResolver } from './resolver/dish-resolver.js';
 
 const routes = [
   {
@@ -11,22 +11,16 @@ const routes = [
   {
     path: '/home',
     component: () => import('../views/Home.vue'),
-    beforeEnter: (to, from, next) => loginGuard(to, from, next)
+    beforeEnter: (to, from, next) => {
+      authGuard(to, from, next)
+      dishResolver(to, from, next)
+    }
   },
   {
     path: '/sign-up',
     component: () => import('../views/Signup.vue')
   }
 ]
-
-
-const loginGuard = function(to, from, next) {
-  if(store.getters.loggedIn){
-    next();
-    return;
-  }
-  next(''); 
-}
 
 const router = createRouter({
   history: createWebHistory(),

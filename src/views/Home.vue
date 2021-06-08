@@ -5,7 +5,8 @@
             v-for="dish in dishes" 
             :key="dish.id" 
             :title="dish.title" 
-            :description="dish.description" />
+            :description="dish.description"
+            :imageUrl="dish.url" />
     </div> 
   </div>
 </template>
@@ -20,16 +21,17 @@ export default {
             return this.$store.getters.user;
         } 
     },
+    created() {        
+        this.dishes = this.$route.meta.dishes;
+        console.log(this.dishes);
+    },
     data() {
         return {
-            dishes: [
-                {id: 1, title: 'Food 01', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt error unde nostrum, eaque distinctio repudiandae molestias animi nemo autem expedita eos accusantium rem totam sint architecto non et minima harum.'},
-                {id: 2, title: 'Food 02', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt error unde nostrum, eaque distinctio repudiandae molestias animi nemo autem expedita eos accusantium rem totam sint architecto non et minima harum.'},
-                {id: 3, title: 'Food 03', description: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Deserunt error unde nostrum, eaque distinctio repudiandae molestias animi nemo autem expedita eos accusantium rem totam sint architecto non et minima harum.'}
-            ]
+            dishes: []
         }
     },
     methods: {
+
     }
 }
 </script>

@@ -36,10 +36,6 @@ export default {
     required: {
       type: Boolean,
       default: false
-    },
-    validatePassword: {
-      type: Boolean,
-      default: false
     }
   },
   data() {
@@ -64,10 +60,10 @@ export default {
       if(!this.id) console.error('É necessário informar um id para o input.');
     },
     _validateModelValue(value) {
-      if(this.type === 'password' && this.validatePassword && !this._validatePassword(value)) {
-        this._setInputWithError('Senha deve conter ao menos uma letra maiúscula e um número.');
-        return;
-      }
+      // if(this.type === 'password' && this.validatePassword && !this._validatePassword(value)) {
+      //   this._setInputWithError('Senha deve conter ao menos uma letra maiúscula e um número.');
+      //   return;
+      // }
       if(this._validateRequired(value)) {
         this._setInputWithError('Campo obrigatório');
         return;

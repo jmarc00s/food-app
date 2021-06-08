@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div @keypress.enter="logIn(form)" class="form">
+    <div class="form">
       <div class="form__header">
         <img class="form__icon" src="../../assets/dish.svg" alt="dish">
         <h2 class="brand">{{title}}</h2>
@@ -34,6 +34,14 @@ export default {
 
 .form__body {
   @apply mt-3
+}
+
+.form__link {
+  @apply text-indigo-500 ml-3 text-sm
+}
+
+.form__link:hover {
+  @apply underline
 }
 
 .container {
