@@ -20,6 +20,11 @@ const routes = [
     beforeEnter: (to, from, next) => authGuard(to, from, next)
   },
   {
+    path: '/cart',
+    component: () => import('../views/ShoppingCart.vue'),
+    beforeEnter: (to, from, next) => authGuard(to, from, next)
+  },  
+  {
     path: '/checkout',
     component: () => import('../views/Checkout.vue'),
     beforeEnter: (to, from, next) => authGuard(to, from, next)

@@ -1,8 +1,7 @@
 <template>
-   <div class="p-4 w-full">
-    <!--Card 1-->
-    <div class="rounded overflow-hidden shadow-lg bg-gray-100 w-full">
-      <img class="w-full" :src="imageUrl" alt="dishImage">
+   <div class="p-4 w-full h-full">
+    <div class="rounded overflow-hidden shadow-lg bg-gray-100 w-full h-full">
+      <img class="max-w-full" :src="imageUrl" alt="dishImage">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{title}}</div>
         <p class="text-gray-700 text-base">
@@ -10,7 +9,7 @@
         </p>
       </div>
       <div class="px-6 py-6">   
-          <j-button title="Comprar" @onClick="emitBuy()"/>
+          <j-button title="Adicionar ao carrinho" @onClick="emitAddToCart"/>
       </div>
     </div>
   </div>
@@ -20,7 +19,7 @@
 import JButton from './JButton.vue';
 
 export default {
-  emits: ['buyClick'],
+  emits: ['addToCart'],
   components: { JButton },
     props: {
         title: {
@@ -41,8 +40,8 @@ export default {
         }
     },
     methods: {
-      emitBuy(){
-        this.$emit('buyClick');
+      emitAddToCart(){
+        this.$emit('addToCart');
       }
     }
 }

@@ -2,13 +2,13 @@
   <div class="home-container">
     <div class="card-grid">
         <j-card 
-            class="w-full"
+            class="h-full"
             v-for="dish in dishes" 
             :key="dish.id" 
             :title="dish.title" 
             :description="dish.description"
             :imageUrl="dish.url"
-            @buyClick="addToCart(dish.id)" />
+            @addToCart="addToCart(dish)" />
     </div> 
   </div>
 </template>
@@ -37,8 +37,8 @@ export default {
         setDishes(dishes) {
             this.dishes = dishes;
         },
-        addToCart(id) {
-            console.log(id);
+        addToCart(dish) {
+            this.$store.dispatch('addShoppingCartItem', dish);
         }
     }
 }
