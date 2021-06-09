@@ -2,6 +2,7 @@
   <div class="home-container">
     <div class="card-grid">
         <j-card 
+            class="w-full"
             v-for="dish in dishes" 
             :key="dish.id" 
             :title="dish.title" 
@@ -48,6 +49,6 @@ export default {
     @apply grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1
 }
 .home-container{
-    @apply container mx-auto flex xl:p-40
+    @apply container mx-auto flex xl:p-8
 }
 </style>

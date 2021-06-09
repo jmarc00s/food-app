@@ -1,7 +1,7 @@
 <template>
    <div class="p-4 w-full">
     <!--Card 1-->
-    <div class="rounded overflow-hidden shadow-lg bg-gray-100">
+    <div class="rounded overflow-hidden shadow-lg bg-gray-100 w-full">
       <img class="w-full" :src="imageUrl" alt="dishImage">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{title}}</div>
