@@ -6,13 +6,15 @@
             :key="dish.id" 
             :title="dish.title" 
             :description="dish.description"
-            :imageUrl="dish.url" />
+            :imageUrl="dish.url"
+            @buyClick="addToCart(dish.id)" />
     </div> 
   </div>
 </template>
 
 <script>
 import JCard from '../components/JCard';
+import { http } from '../plugins/axios';
 
 export default {  
     components: { JCard },  
@@ -21,17 +23,22 @@ export default {
             return this.$store.getters.user;
         } 
     },
-    created() {        
-        this.dishes = this.$route.meta.dishes;
-        console.log(this.dishes);
-    },
+    beforeRouteEnter(to, from, next){
+        const pDishes = http('dishes');
+        pDishes.then(res => next(vm => vm.setDishes(res.data)), err => console.log(err));
+    },    
     data() {
         return {
             dishes: []
         }
     },
     methods: {
-
+        setDishes(dishes) {
+            this.dishes = dishes;
+        },
+        addToCart(id) {
+            console.log(id);
+        }
     }
 }
 </script>

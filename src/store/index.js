@@ -1,8 +1,8 @@
 import { createStore } from 'vuex';
-import login from './modules/login';
+import authentication from './modules/authentication';
 
 export default createStore({
   modules: {
-    login
+    authentication
   }
 })

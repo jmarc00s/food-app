@@ -1,16 +1,16 @@
 export default {
     state: {
-        loggedIn: false,
-        loggedUser: {},
+        isAuthenticated: false,
+        user: {},
       },
       mutations: {
         setUser(state, payload){
-          state.loggedIn = true;
-          state.loggedUser = payload;
+          state.isAuthenticated = true;
+          state.user = payload;
         },
         removeUser(state) {
-          state.loggedUser = {};
-          state.loggedIn = false;
+          state.user = {};
+          state.isAuthenticated = false;
         }
       },
       actions: {
@@ -18,9 +18,9 @@ export default {
         logOut: ({commit}) => commit('removeUser')
       },
       getters: {
-        user: state => state.loggedUser,
-        loggedIn(state)  {
-            return state.loggedIn
+        user: state => state.user,
+        isAuthenticated(state)  {
+            return state.isAuthenticated
         } 
       }
 };

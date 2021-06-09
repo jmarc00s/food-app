@@ -1,6 +1,6 @@
 <template>
   <div id="main">   
-    <j-navbar v-if="loggedIn" />
+    <j-navbar v-if="isAuthenticated" />
     <router-view/>
   </div>
 </template>
@@ -9,8 +9,8 @@ import JNavbar from './components/JNavBar';
 export default {
   components: { JNavbar },
   computed: {
-    loggedIn() {
-      return this.$store.getters.loggedIn;
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
     } 
   }
 }

@@ -9,16 +9,19 @@
           {{description}}
         </p>
       </div>
-      <div class="px-6 pt-4 pb-2">
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#food</span>
-        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#thailand</span>        
+      <div class="px-6 py-6">   
+          <j-button title="Comprar" @onClick="emitBuy()"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import JButton from './JButton.vue';
+
 export default {
+  emits: ['buyClick'],
+  components: { JButton },
     props: {
         title: {
             type: String,
@@ -38,7 +41,9 @@ export default {
         }
     },
     methods: {
-
+      emitBuy(){
+        this.$emit('buyClick');
+      }
     }
 }
 </script>
