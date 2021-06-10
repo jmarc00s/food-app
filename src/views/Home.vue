@@ -38,7 +38,7 @@ export default {
             this.dishes = dishes;
         },
         addToCart(dish) {
-            this.$store.dispatch('addShoppingCartItem', dish);
+            this.$store.dispatch('addShoppingCartItem', {item: dish, quantity: 1});
         }
     }
 }

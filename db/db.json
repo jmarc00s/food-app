@@ -14,19 +14,22 @@
       "id": 1,
       "title": "Guay Jub",
       "url": "http://www.chadathaigg.com/wp-content/uploads/2016/07/housenoodle.jpg",
-      "description": "Essa sopa que tem como base os noodles de arroz, tofu, carne de porco e ovos cozidos é um dos muitos legados da presença chinesa na Tailândia. "
+      "description": "Essa sopa que tem como base os noodles de arroz, tofu, carne de porco e ovos cozidos é um dos muitos legados da presença chinesa na Tailândia. ",
+      "price": 17.5
     },
     {
       "id": 2,
       "title": "Pad Thai ",
       "url": "http://img.taste.com.au/-rXeYPJs/taste/2016/11/chicken-pad-thai-94082-1.jpeg",
-      "description": "Pad thai, ou phad thai, é um prato de macarrão de arroz frito."
+      "description": "Pad thai, ou phad thai, é um prato de macarrão de arroz frito.",
+      "price": 22.5
     },
     {
       "id": 3,
       "title": "Tom Kha Gai",
       "url": "https://assets.bonappetit.com/photos/57ae064653e63daf11a4e155/16:9/w_1000,c_limit/tom-kha-gai-chicken-coconut-soup.jpg",
-      "description": "Tom Kha Gai é uma sopa de frango e leite de coco, aromatizada com galangal – uma raiz da família do gengibre – capim-limão e lima kaffir"
+      "description": "Tom Kha Gai é uma sopa de frango e leite de coco, aromatizada com galangal – uma raiz da família do gengibre – capim-limão e lima kaffir",
+      "price": 12.5
     }
   ]
 }
