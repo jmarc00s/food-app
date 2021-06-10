@@ -17,7 +17,6 @@
 
 <script>
 import { ref } from 'vue';
-import { http }  from '../plugins/axios';
 import Auth from '../components/auth/Auth';
 import JInput from '../components/JInput';
 import JButton from '../components/JButton';
@@ -41,7 +40,7 @@ export default {
   },
   methods: {
     async signUp() {
-      const users = await http.get('users');
+      const users = await this.$http('users');
 
       const id = ++(users.data.length);
       
@@ -51,7 +50,7 @@ export default {
       }
     },
     async _createUser(body) { 
-      const data = await http.post('users', body);
+      const data = await this.$http.post('users', body);
 
       if(data) {
         window.alert('Cadastro realizado com sucesso!');

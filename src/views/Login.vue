@@ -19,8 +19,6 @@ import JInput from '../components/JInput';
 import JButton from '../components/JButton';
 import JCheckbox from '../components/JCheckbox';
 import Auth from '../components/auth/Auth.vue'
-
-import { http } from '../plugins/axios';
 import md5 from 'md5';
 
 export default {
@@ -38,7 +36,7 @@ export default {
     logIn(form){      
       if(!this._validateLoginForm(form)) return;
 
-      const pLogin = http.get(`users?email=${form.email}&password=${md5(form.password)}`);
+      const pLogin = this.$http(`users?email=${form.email}&password=${md5(form.password)}`);
       pLogin.then(res => {
         if(res.data.length) {
           this.$store.dispatch('logIn', res.data[0]);
