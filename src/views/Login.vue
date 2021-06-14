@@ -7,6 +7,7 @@
         <router-link to="/" class="form__link">Esqueceu a senha ?</router-link>     
       </div>
       <j-button class="form__button" title="Entrar" v-on:onClick="logIn(form)"/>
+      <j-alert v-if="error" class="mt-3" type="danger" :message="errorMessage" />
       <div class="form__signUp">    
         <p>Ainda não tem uma conta?</p>
         <router-link to="/sign-up"  class="form__link">Cadastre-se</router-link>
@@ -18,34 +19,46 @@
 import JInput from '../components/JInput';
 import JButton from '../components/JButton';
 import JCheckbox from '../components/JCheckbox';
-import Auth from '../components/auth/Auth.vue'
+import Auth from '../components/auth/Auth.vue';
+import JAlert from '../components/JAlert.vue'
 import md5 from 'md5';
 
 export default {
-  components: { JInput, JButton, JCheckbox, Auth },
+  components: { JInput, JButton, JCheckbox, Auth, JAlert },
   data() {
     return {
       form: {
         email: '',
         password: '',
-        keepLoggedIn: false
-      }
+        keepLoggedIn: false        
+      },
+      error: false,
+      errorMessage: 'Usuário e/ou senha inválidos.'
     }
   },
   methods: {
     logIn(form){      
+      this.error = false;
+
       if(!this._validateLoginForm(form)) return;
 
       const pLogin = this.$http(`users?email=${form.email}&password=${md5(form.password)}`);
       pLogin.then(res => {
-        if(res.data.length) {
-          this.$store.dispatch('logIn', res.data[0]);
-          this.$router.push('/home');
+        if(!res.data.length) {
+          this._handleError();
           return;
-        }
-        window.alert('Usuário e/ou senha incorretos');
+        } 
+
+        this.$store.dispatch('logIn', res.data[0]);
+        this.$router.push('/home');
       }).catch(e => console.error(e));
     },
+    _handleError() {
+      this.error = true;
+      this.errorMessage = 'Usuário e/ou senha inválidos.'
+      return;
+    },
+
     _validateLoginForm(form) {
       
       if(!form){
