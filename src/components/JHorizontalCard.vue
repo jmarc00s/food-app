@@ -7,9 +7,15 @@
         <div class="flex-1 px-6 py-4">
             <h4 class="mb-3 text-xl font-medium tracking-tight text-gray-900">{{title}}</h4>
             <p class="leading-normal text-gray-600">Id do produto: {{id}}</p>
-            <div class="flex flex-col mt-5 ">
-              <span class="card__quantity">Quantidade: {{quantity}} </span> 
+            <div class="flex flex-col mt-5">
+              <div class="card__quantity"> 
+                Quantidade:  
+                <button @click="decreaseQuantity()" class="card__quantity-button" :disabled="quantity <= 0"> - </button>  {{quantity}} <button class="card__quantity-button" @click="increaseQuantity()">+</button> 
+              </div> 
               <span class="card__total">Total: {{$filters.currency(total ?? 0)}} </span> 
+              <div class="w-full mt-3">
+                <JButton title="Remover item" @onClick="removeFromCart(id)" />
+              </div>
             </div>
         </div>
     </div>
@@ -17,16 +23,28 @@
 </template>
 
 <script>
-export default {
-    props: ['title', 'imageUrl', 'id', 'quantity', 'price'],    
-    computed: {
-      total() {
-        return this.quantity * this.price;
-      }
-    },
-    methods: {
+import JButton from '../components/JButton.vue'
 
+export default {
+  emits: ['increaseQuantity', 'decreaseQuantity'],
+  components: { JButton },
+  props: ['title', 'imageUrl', 'id', 'quantity', 'price'],    
+  computed: {
+    total() {
+      return (this.quantity * this.price).toFixed(2)
+    }    
+  },
+  methods: {
+    removeFromCart(id) {         
+      this.$store.dispatch('removeShoppingCartItemById', id);
+    },
+    increaseQuantity() {
+      this.$emit('increaseQuantity');
+    },
+    decreaseQuantity(){
+      this.$emit('decreaseQuantity');
     }
+  }
 }
 </script>
 
@@ -36,5 +54,8 @@ export default {
 }
 .card__total {
   @apply text-gray-800 font-semibold
+}
+.card__quantity-button {
+  @apply px-4 text-lg outline-none
 }
 </style>

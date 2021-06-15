@@ -4,12 +4,12 @@
       <img class="max-w-full" :src="imageUrl" alt="dishImage">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{title}}</div>
-        <p class="text-gray-700 text-base">
+        <p class="text-gray-700 text-base h-full">
           {{description}}
         </p>
       </div>
-      <div class="px-6 py-6">   
-          <j-button title="Adicionar ao carrinho" @onClick="emitAddToCart"/>
+      <div class="px-6 py-6">
+          <j-button :disabled="disabled" title="Adicionar ao carrinho" @onClick="emitAddToCart"/>
       </div>
     </div>
   </div>
@@ -32,6 +32,9 @@ export default {
         },
         imageUrl: {
             type: String
+        },
+        disabled: {
+            type: Boolean
         }
     },
     data() {

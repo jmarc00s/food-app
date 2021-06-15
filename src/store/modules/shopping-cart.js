@@ -16,18 +16,19 @@ export default {
         }        
       },
       actions: {
-        addShoppingCartItem: ({commit, state}, payload) => {
-          if(state.items.some(c => c.item.id === payload.id)){
-            commit('increaseQuantity', payload)
-            return;
-          }
+        addShoppingCartItem: ({commit}, payload) => {
           commit('addItem', payload)
         },
-        removeShoppingCartItem: ({commit}, payload) => commit('removeItem', payload)
+        removeShoppingCartItem: ({commit}, payload) => commit('removeItem', payload),
+        removeShoppingCartItemById: function({commit, state}, id) {
+          const item = state.items.filter(c => c.item.id === id)[0];
+          commit('removeItem', item);
+        }
       },
       getters: {
         shoppingCartItems: state => state.items,
         shoppingCartItemsCount: state => state.items.length,
-        shoppingCartTotal: state => state.items.reduce((acc, curr) => acc += curr.item.price * curr.quantity, 0)
+        shoppingCartTotal: state => state.items.reduce((acc, curr) => acc += curr.item.price * curr.quantity, 0),
+        dishInCart: (state) => (dishId) => state.items.map(c => c.item.id).includes(dishId)
       }
 };

@@ -1,5 +1,6 @@
 <template>
   <div class="home-container">
+      
     <div class="card-grid">
         <j-card 
             class="h-full"
@@ -7,7 +8,8 @@
             :key="dish.id" 
             :title="dish.title" 
             :description="dish.description"
-            :imageUrl="dish.url"
+            :imageUrl="dish.url"   
+            :disabled="alreadyInCart(dish.id)"         
             @addToCart="addToCart(dish)" />
     </div> 
   </div>
@@ -22,10 +24,14 @@ export default {
     computed: {
         user(){
             return this.$store.getters.user;
-        } 
+        },
+        cartItems() {
+            return this.$store.getters.shoppingCartItems;
+        }
     },
     beforeRouteEnter(to, from, next){
         const pDishes = http('dishes');
+
         pDishes.then(res => next(vm => vm.setDishes(res.data)), err => console.log(err));
     },    
     data() {
@@ -37,8 +43,11 @@ export default {
         setDishes(dishes) {
             this.dishes = dishes;
         },
-        addToCart(dish) {
+        addToCart(dish) {            
             this.$store.dispatch('addShoppingCartItem', {item: dish, quantity: 1});
+        },
+        alreadyInCart(dishId){            
+            return this.$store.getters.dishInCart(dishId);
         }
     }
 }

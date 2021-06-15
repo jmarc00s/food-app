@@ -15,7 +15,9 @@
                       :imageUrl="cartItem.item.url"
                       :id="cartItem.item.id"
                       :price="cartItem.item.price"
-                      :quantity="cartItem.quantity"/>
+                      :quantity="cartItem.quantity"
+                      @increaseQuantity="increaseQuantity(cartItem)"
+                      @decreaseQuantity="decreaseQuantity(cartItem)"/>
               </div>
               <div class="cart__summary">
                   <span class="font-semibold text-sm">Resumo</span>
@@ -39,7 +41,17 @@ export default {
       return this.$store.getters.shoppingCartItems
     },
     cartTotal() {
-      return this.$store.getters.shoppingCartTotal
+      return (this.$store.getters.shoppingCartTotal).toFixed(2)
+    }
+  },
+  methods: {
+    increaseQuantity(cartItem) {      
+      cartItem.quantity += 1;
+    },
+    decreaseQuantity(cartItem) {
+      if(cartItem <= 1) return;
+
+      cartItem.quantity -= 1;
     }
   }
 }
@@ -56,15 +68,15 @@ export default {
   @apply text-lg font-bold pr-2;
 }
 .cart__body {
-  @apply grid grid-cols-1 lg:grid-cols-5 pt-10
+  @apply grid grid-cols-1 lg:grid-cols-5 pt-10 gap-4
 }
 .cart__items {
   flex: 3;  
-  @apply grid grid-cols-1 lg:grid-cols-2 col-span-4
+  @apply grid grid-cols-1 lg:grid-cols-2 col-span-4 gap-3
 }
 
 .cart__item {
-  @apply mb-3 ml-4
+  
 }
 .cart__summary {
   flex: .3;  
