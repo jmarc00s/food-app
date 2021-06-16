@@ -10,7 +10,7 @@
             <div class="flex flex-col mt-5">
               <div class="card__quantity"> 
                 Quantidade:  
-                <button @click="decreaseQuantity()" class="card__quantity-button" :disabled="quantity <= 0"> - </button>  {{quantity}} <button class="card__quantity-button" @click="increaseQuantity()">+</button> 
+                <button @click="decreaseQuantity()" class="card__quantity" :disabled="quantity <= 0"> - </button>  {{quantity}} <button class="card__quantity" @click="increaseQuantity()">+</button> 
               </div> 
               <span class="card__total">Total: {{$filters.currency(total ?? 0)}} </span> 
               <div class="w-full mt-3">
@@ -32,7 +32,7 @@ export default {
   computed: {
     total() {
       return (this.quantity * this.price).toFixed(2)
-    }    
+    } 
   },
   methods: {
     removeFromCart(id) {         
@@ -55,7 +55,17 @@ export default {
 .card__total {
   @apply text-gray-800 font-semibold
 }
-.card__quantity-button {
-  @apply px-4 text-lg outline-none
+.card__quantity {
+  outline: none;
+  border: none;
+  @apply px-4 text-lg
+}
+.card__quantity:active{
+  outline: none;
+  border: none;
+}
+.card__quantity:focus {
+  outline: none;
+  border: none;
 }
 </style>

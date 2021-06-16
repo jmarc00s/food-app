@@ -22,7 +22,7 @@ export default {
         removeShoppingCartItem: ({commit}, payload) => commit('removeItem', payload),
         removeShoppingCartItemById: function({commit, state}, id) {
           const item = state.items.filter(c => c.item.id === id)[0];
-          commit('removeItem', item);
+          commit('removeItem', item.item);
         }
       },
       getters: {
